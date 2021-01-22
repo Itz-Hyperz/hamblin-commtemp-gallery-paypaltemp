@@ -13,7 +13,7 @@ So a quick run-down:
 
 - I am taking the gallery from his [Community Template](https://github.com/Jekeltor/communitytemplate)
 - Reworking it to work correctly with his PayPal Template
-- Releasing it here, with some instructions, aswell as the 
+- Releasing it here, with some instructions, aswell as the credits.
 
 ---
 
