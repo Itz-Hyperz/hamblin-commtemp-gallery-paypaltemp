@@ -16,10 +16,18 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Inria+Sans&display=swap" rel="stylesheet">
 	<script>
-	  	window.onload = function() { 
-	  		setTimeout(function(){ var loader = document.getElementById('loader');
-	  		loader.classList.add("none"); }, 2000);
-	  	}
+		$('html, body').css({
+		  	'overflow': 'hidden',
+		  	'height': '100vh'
+		});
+
+		window.onload = function() {
+			document.querySelector(".preloader").classList.add("loaded");
+			$('html, body').css({
+			  	'overflow': 'auto',
+			 	'height': 'auto'
+			});
+		}
 	</script>
 	<style>
 		body {
@@ -31,153 +39,133 @@
 			font-family: 'Inria Sans', sans-serif;
 		}
 
-		.loader {
-			height: 100vh;
-			width: 100%;
-			background-color: <?php echo $colorhex ?>;
-			position: absolute;
-			z-index: 10;
-		}
+		.preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	height: 100vh;
+	width: 100%;
+	opacity: 1;
+	background-color: #141414;
+	transition: all .5s ease;
+}
 
-		.loader .loading {
-			width: 100%;
-			height: 100%;
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 99;
-		}
+.preloader.loaded {
+	z-index: -1;
+	opacity: 0;
+}
 
-		.loader .loading:after {
-		  	content: "";
-		  	width: 8vh;
-		  	height: 8vh;
-		  	position: absolute;
-		  	top: -30px;
-		  	right: 0;
-		  	left: 0;
-		  	bottom: 0;
-		  	margin: auto;
-		  	border: 1vh solid #fff;
-		  	border-top: 1vh dotted #fff;
-		  	border-bottom: 1vh dotted #fff;
-		  	border-radius: 50%;
-		  	animation: loading 2s infinite;
-		}
+.dropdown {
+	display: flex;
+	position: fixed;
+	height: 100vh;
+	width: 100%;
+	background-color: #212121;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	z-index: -1;
+	transition: all .5s ease;
+	text-align: center;
+}
 
-		.none {
-			animation: .25s ease-in 0s 1 preloader;
-			animation-fill-mode: forwards;
-		}
+.dropdown .center a {
+	display: block;
+	font-size: 5vh;
+	color: #fff;
+	margin: 1vh 0%;
+	text-decoration: none;
+}
 
-		.dropdown {
-			display: none;
-			background-color: <?php echo $colorhex ?>;
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 3;
-			height: 100vh;
-			width: 100%;
-			align-items: center;
-			justify-content: center
-		}
+.dropdown.shown {
+	z-index: 4;
+	opacity: 1;
+}
 
-		.dropdownshow {
-			display: flex;
-		}
+.navbar {
+	display: flex;
+	width: 80%;
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	padding: 3vh 10%;
+	z-index: 5;
+	transition: all .5s ease;
+}
 
-		.dropdown .center {
-			text-align: center;
-		}
+.navbar.scrolled {
+	padding: 1.5vh 10%;
+	background-color: #141414;
+}
 
-		.dropdown .center a {
-			display: block;
-			font-size: 4vh;
-			color: #fff;
-			margin-bottom: 1vh;
-			text-decoration: none;
-		}
+.navbar.dropdownshown {
+	padding: 3vh 10%;
+	background-color: none;
+}
 
-		.navbar {
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: 15vh;
-			width: 100%;
-			background-color: rgba(255, 255, 255, .1);
-			z-index: 3;
-			box-shadow: 0 .01vh 1vh 0 #000;
-		}
+.navbar .left {
+	display: flex;
+	width: 35%;
+	align-items: center;
+	justify-content: flex-start;
+	opacity: 1;
+	transition: all .5s ease;
+}
 
-		.navbarhidden {
-			background-color: rgba(255, 255, 255, 0);
-			box-shadow: none;
-		}
+.navbar.dropdownshown .left {
+	opacity: 0;
+}
 
-		.navbar .mleft {
-			display: none;
-			align-items: center;
-			justify-content: flex-start;
-		}
+.navbar .left img {
+	height: 7.5vh;
+	width: auto;
+}
 
-		.navbar .mleft img {
-			height: 10vh;
-			width: auto;
-		}
+.navbar .right {
+	width: 65%;
+	text-align: right;
+}
 
-		.navbarlefthidden {
-			display: none !important;
-		}
+.navbar .right a {
+	font-size: 2.5vh;
+	color: #fff;
+	margin-left: 2%;
+	text-decoration: none;
+	position: relative;
+}
 
-		.navbar .links {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 15vh;
-			margin-right: 2.5vw;
-		}
+.navbar .right .links a::after {
+	position: absolute;
+	top: 75%;
+	left: 50%;
+	color: transparent;
+	content: '•';
+	text-shadow: 0 0 transparent;
+	font-size: 2vh;
+	transition: text-shadow 0.3s, color 0.3s;
+	transform: translateX(-50%);
+	pointer-events: none;
+}
 
-		.navbar .mright {
-			display: none;
-			align-items: center;
-			justify-content: flex-end;
-		}
+.navbar .right .links a:hover::after, .navbar .right .links a:focus::after, .navbar .right .links .active::after {
+	color: #fff;
+	text-shadow: .4vw 0 #fff, -.4vw 0 #fff;
+}
 
-		.navbar .mright a {
-			font-size: 4vh;
-			color: #fff;
-			cursor: pointer;
-			background-image: none !important;
-		}
+.navbar .right a.dropdownbtn, .navbar .right a.dropdownbtnclose {
+	display: none;
+	font-size: 3vh;
+}
 
-		.navbar a {
-			color: #fff;
-			font-size: 2vh;
-			text-decoration: none;
-			margin: 0 2%;
-			background-image: linear-gradient(#fff, #fff);
-			background-size: 0 .3vh, auto;
-			background-repeat: no-repeat;
-			background-position: center bottom;
-			transition: all .2s ease-out;
-			padding-bottom: .3vh;
-		}
+.navbar.dropdownshown .right a.dropdownbtn {
+	display: none;
+}
 
-		.navbar a:hover, .navbar a.active {
-			background-size: 100% .3vh, auto;
-		}
-
-		.navbar .votea {
-			background-color: <?php echo $colorhex ?>;
-			padding: 1.5vh 3%;
-			font-size: 2.25vh;
-			border-radius: 5vh;
-			box-shadow: 0 .5vh 0 0 rgb(<?php echo $colordarker ?>);
-			cursor: pointer;
-			transition: .5s ease;
-			background-image: none;
-		}
+.navbar.dropdownshown .right a.dropdownbtnclose {
+	display: inline-block;
+	font-size: 3.5vh;
+}
 
 		.imageviewer {
 			display: none;
@@ -252,7 +240,6 @@
 			width: 100%;
 			position: absolute;
 			z-index: 2;
-			background-image: linear-gradient(rgba(<?php echo $colorrgb ?>, .5), rgba(39, 43, 48, 1));
 		}
 
 		.body .screen .spacer {
