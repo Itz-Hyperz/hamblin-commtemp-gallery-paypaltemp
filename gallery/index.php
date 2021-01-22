@@ -6,7 +6,11 @@
 <head>
 	<title>Gallery - <?php echo $name ?></title>
 	<link rel="icon" type="image/png" href="<?php echo $logo ?>" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-0c38nfCMzF8w8DBI+9nTWzApOpr1z0WuyswL4y6x/2ZTtmj/Ki5TedKeUcFusC/k" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-0c38nfCMzF8w8DBI+9nTWzApOpr1z0WuyswL4y6x/2ZTtmj/Ki5TedKeUcFusC/k" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="<?php echo $domain ?>/css/main.css">
+	<link rel="stylesheet" href="<?php echo $domain ?>/css/subpages.css">
+	<link rel="stylesheet" href="<?php echo $domain ?>/css/cards.css">
 	<meta name="theme-color" content="#<?php echo $color ?>">
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:creator" content="@jekeltor" />
