@@ -1,4 +1,4 @@
-# hamblin-commtemp-gallery-paypaltemp
+# PayPal Template Gallery Extension
 
 **Project Status:** === __Incomplete__ ===
 
