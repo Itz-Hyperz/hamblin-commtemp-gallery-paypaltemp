@@ -1,4 +1,5 @@
 <?php
+	$page = "Gallery";
  	include("../config.php");
 ?><!DOCTYPE html>
 <html>
