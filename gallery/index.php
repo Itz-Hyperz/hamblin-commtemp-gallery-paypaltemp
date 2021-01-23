@@ -35,16 +35,16 @@
 		}
 	</script>
 	<style>
-		body {
-			height: 100vh;
-			width: 100%;
-			overflow: hidden;
-			margin: 0;
-			background-color: rgb(39, 43, 48);
-			font-family: 'Inria Sans', sans-serif;
-		}
+	body {
+		height: 100vh;
+		width: 100%;
+		overflow: hidden;
+		margin: 0;
+		background-color: rgb(39, 43, 48);
+		font-family: 'Inria Sans', sans-serif;
+	}
 
-		.preloader {
+	.preloader {
 	position: fixed;
 	top: 0;
 	left: 0;
